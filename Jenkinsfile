@@ -1,6 +1,6 @@
-def CONTAINER_NAME="ratpack-jenkins-pipeline"
+def CONTAINER_NAME="ratpackSampleApp"
 def CONTAINER_TAG="latest"
-def DOCKER_HUB_USER="saravananperumal"
+def DOCKER_HUB_USER="sundaravelb"
 def HTTP_PORT="5050"
 
 node {
