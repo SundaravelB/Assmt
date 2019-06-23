@@ -55,9 +55,9 @@ node {
         notifySuccessful()
     }
   
-    post { 
-        always { 
-            cleanWs()
+    stage('CleanWorkspace') {
+        steps {
+           cleanWs()
         }
     }
     
