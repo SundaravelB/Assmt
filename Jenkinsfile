@@ -20,6 +20,10 @@ node {
     stage('Build'){
         sh "gradle build"
     }
+  
+    stage('Unit Test'){
+        sh "gradle test"
+    }
 
     /* stage('Sonar'){
         try {
