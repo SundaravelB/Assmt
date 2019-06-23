@@ -22,7 +22,7 @@ node {
     }
   
     stage('Unit Test'){
-        sh "gradle test"
+        sh "gradle clean test"
     }
 
     /* stage('Sonar'){
