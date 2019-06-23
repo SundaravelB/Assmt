@@ -34,7 +34,7 @@ public class MainTest {
     @Test
     public void postRequest() {
         final ReceivedResponse response = httpClient.post("item/22");
-        assertEquals(200, response.getStatusCode());
+        assertEquals(405, response.getStatusCode());
         assertEquals(response.getBody().getText(), "Post Request");
     }
 
