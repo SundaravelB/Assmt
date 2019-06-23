@@ -54,7 +54,6 @@ node {
      notifyFailed()
      throw e
    }
- }
 
 }
 
