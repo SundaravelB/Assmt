@@ -47,14 +47,17 @@ node {
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
     }
 
-    notifySuccessful()
-  
+    stage('Email Notification'){
+        notifySuccessful()
+    }
+    
     } catch (e) {
      currentBuild.result = "FAILED"
-     notifyFailed()
+     stage('Email Notification'){
+        notifyFailed()
+     }
      throw e
    }
-
 }
 
 def imagePrune(containerName){
