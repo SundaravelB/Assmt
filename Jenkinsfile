@@ -5,6 +5,8 @@ def HTTP_PORT="5050"
 
 node {
 
+ try {
+    
     stage('Initialize'){
         def dockerHome = tool 'myDocker'
         def gradleHome  = tool 'myGradle'
@@ -45,6 +47,13 @@ node {
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
     }
 
+    } catch (e) {
+     currentBuild.result = "FAILED"
+     notifyFailed()
+     throw e
+   }
+ }
+
 }
 
 def imagePrune(containerName){
@@ -71,3 +80,18 @@ def runApp(containerName, tag, dockerHubUser, httpPort){
     sh "docker run -d --rm -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
     echo "Ratpack Application started"
 }
+
+def notifyFailed() {
+   slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+ 
+   hipchatSend (color: 'RED', notify: true,
+       message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+     )
+ 
+   emailext (
+       subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+       body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+         <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""",
+       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+     )
+ }
