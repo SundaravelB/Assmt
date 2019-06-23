@@ -47,6 +47,8 @@ node {
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
     }
 
+    notifySuccessful()
+  
     } catch (e) {
      currentBuild.result = "FAILED"
      notifyFailed()
@@ -81,6 +83,20 @@ def runApp(containerName, tag, dockerHubUser, httpPort){
     echo "Ratpack Application started"
 }
 
+def notifySuccessful() {
+   slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+ 
+   hipchatSend (color: 'GREEN', notify: true,
+       message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+     )
+ 
+   emailext (
+       subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+       body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+         <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""",
+       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+     )
+ 
 def notifyFailed() {
    slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
  
