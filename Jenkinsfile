@@ -21,11 +21,8 @@ node {
         sh "gradle build"
     }
   
-    stage('Unit Test'){
-        sh "gradle cleanTest test"
-    }
-
-    stage('SonarQube analysis') {
+  
+    /*stage('SonarQube analysis') {
        withSonarQubeEnv('mySonarQube') {
          // requires SonarQube Scanner for Gradle 2.1+
          // It's important to add --info because of SONARJNKNS-281
@@ -33,7 +30,7 @@ node {
        }
     }
   
-    /* stage('Sonar'){
+     stage('Sonar'){
         try {
             sh "mvn sonar:sonar"
         } catch(error){
