@@ -56,9 +56,7 @@ node {
     }
   
     stage('CleanWorkspace') {
-        steps {
-           cleanWs()
-        }
+        cleanWs()
     }
     
     } catch (e) {
