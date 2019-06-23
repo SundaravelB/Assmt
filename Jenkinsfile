@@ -54,6 +54,12 @@ node {
     stage('Email Notification'){
         notifySuccessful()
     }
+  
+    post { 
+        always { 
+            cleanWs()
+        }
+    }
     
     } catch (e) {
      currentBuild.result = "FAILED"
