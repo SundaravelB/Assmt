@@ -24,6 +24,14 @@ dependencies {
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:4.12.0"
 }
 
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
+}
+
 test{
     test.useJUnitPlatform()
 
