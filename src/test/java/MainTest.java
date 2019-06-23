@@ -41,7 +41,7 @@ public class MainTest {
     @Test
     public void putRequest() {
         final ReceivedResponse response = httpClient.put("item/21");
-        assertEquals(405, response.getStatusCode());
+        assertEquals(200, response.getStatusCode());
         assertEquals(response.getBody().getText(), "Put Request");
     }
 
