@@ -1,3 +1,2 @@
 rootProject.name = 'my.ratpackapp'
-include 'ratpack.api'
 
