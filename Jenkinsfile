@@ -47,9 +47,9 @@ node {
         notifySuccessful()
     }
   
-    stage('CleanWorkspace') {
+    /*stage('CleanWorkspace') {
         cleanWs()
-    }
+    }*/
     
     } catch (e) {
      currentBuild.result = "FAILED"
