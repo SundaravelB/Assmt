@@ -21,23 +21,10 @@ node {
         sh "gradle build"
     }
   
-  
-    /*stage('SonarQube analysis') {
-       withSonarQubeEnv('mySonarQube') {
-         // requires SonarQube Scanner for Gradle 2.1+
-         // It's important to add --info because of SONARJNKNS-281
-         sh 'gradle --info sonarqube'
-       }
+    stage('SonarQube analysis') {
+       sh "gradle clean sonarqube"
     }
-  
-     stage('Sonar'){
-        try {
-            sh "mvn sonar:sonar"
-        } catch(error){
-            echo "The sonar server could not be reached ${error}"
-        }
-     } */
-
+ 
     stage("Image Prune"){
         imagePrune(CONTAINER_NAME)
     }
