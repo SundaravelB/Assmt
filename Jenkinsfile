@@ -22,7 +22,7 @@ node {
     }
   
     stage('SonarQube analysis') {
-       sh "gradle clean sonarqube"
+       sh "gradle sonarqube"
     }
  
     stage("Image Prune"){
