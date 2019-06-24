@@ -14,7 +14,7 @@ public class SeleniumTest {
     ChromeOptions chromeOptions;
 
     public SeleniumTest() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 
         //For mac users
         //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
