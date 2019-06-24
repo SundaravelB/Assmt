@@ -23,7 +23,10 @@ repositories {
 dependencies {
     compileClasspath 'io.ratpack:ratpack-gradle:1.6.1'
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:4.12.0"
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+    compile group: 'com.google.guava', name: 'guava', version: '28.0-jre'
 }
+
 
 tasks.withType(Test) {
     testLogging {
@@ -48,8 +51,17 @@ test{
     }
 }
 
+
 intellij {
     version '2019.1.2'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'Main'
+        )
+    }
 }
 
 sonarqube {
@@ -59,14 +71,6 @@ sonarqube {
         property "sonar.organization", "sundaravelb-github"
         property "sonar.projectName", "ratpackSample"
         property "sonar.projectKey", "SundaravelB_Assmt"
-    }
-}
-
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'Main'
-        )
     }
 }
 
