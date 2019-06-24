@@ -3,6 +3,7 @@ plugins {
     id 'io.ratpack.ratpack-java' version '1.6.1'
     id 'org.jetbrains.intellij' version '0.4.8'
     id "com.github.johnrengelman.shadow" version "5.0.0"
+    id "org.sonarqube" version "2.7.1"
 }
 
 wrapper{
@@ -49,6 +50,16 @@ test{
 
 intellij {
     version '2019.1.2'
+}
+
+sonarqube {
+    properties {
+        property "sonar.host.url", "http://sonarcloud.io"
+        property "sonar.login", "06e08444748c443b06572cf215a10cee74c10b05"
+        property "sonar.organization", "sundaravelb-github"
+        property "sonar.projectName", "ratpackSample"
+        property "sonar.projectKey", "SundaravelB_Assmt"
+    }
 }
 
 jar {
