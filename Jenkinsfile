@@ -21,7 +21,7 @@ node {
         sh "gradle build"
     }
   
-    stage('Build'){
+    stage('Selenium Test'){
         sh "gradle seleniumTest"
     }
   
