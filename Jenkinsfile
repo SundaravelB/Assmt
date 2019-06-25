@@ -21,6 +21,10 @@ node {
         sh "gradle build"
     }
   
+    stage('Build'){
+        sh "gradle seleniumTest"
+    }
+  
     stage('SonarQube analysis') {
        sh "gradle sonarqube"
     }
