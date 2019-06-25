@@ -22,7 +22,7 @@ node {
     }
   
     stage('Selenium Test'){
-        sh "chmod 777 ${WORKSPACE}/JenkinsPipeline/ratpackPipeline/src/main/resources/chromedriver"
+        sh "chmod 777 ${WORKSPACE}/src/main/resources/chromedriver"
         sh "gradle seleniumTest"
     }
   
